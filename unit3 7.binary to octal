@@ -1,0 +1,51 @@
+#include<iostream>
+#include<string>
+#include<cmath>
+using namespace std;
+
+class BinaryToOctal {
+public:
+    string binary;
+    int octal;
+
+    BinaryToOctal(string bin) : binary(bin), octal(0) {
+        octal = convertToOctal();
+        displayOctal();
+    }
+
+    int convertToOctal() {
+        int decimal = 0, octalNum = 0, base = 1;
+        int binLength = binary.length();
+
+        for (int i = binLength - 1; i >= 0; i--) {
+            if (binary[i] == '1') {
+                decimal += base;
+            }
+            base *= 2;
+        }
+
+        base = 1;
+        while (decimal > 0) {
+            int remainder = decimal % 8;
+            octalNum += remainder * base;
+            decimal /= 8;
+            base *= 10;
+        }
+
+        return octalNum;
+    }
+
+    void displayOctal() {
+        cout << "The octal equivalent of binary " << binary << " is: " << octal << endl;
+    }
+};
+
+int main() {
+    string binaryInput;
+    cout << "Enter a binary number: ";
+    cin >> binaryInput;
+
+    BinaryToOctal converter(binaryInput);
+
+    return 0;
+}
