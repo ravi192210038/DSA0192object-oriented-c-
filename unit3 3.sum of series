@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+class SeriesSum {
+public:
+    int n;
+    int sum;
+    SeriesSum() : n(0), sum(0) {}
+    SeriesSum(int num) : n(num), sum(0) {
+        calculateNaturalSum();
+        displaySum();
+    }
+    SeriesSum(int num, bool isSquareSum) : n(num), sum(0) {
+        calculateSquareSum();
+        displaySum();
+    }
+    void calculateNaturalSum() {
+        for (int i = 1; i <= n; i++) {
+            sum += i;
+        }
+    }
+    void calculateSquareSum() {
+        for (int i = 1; i <= n; i++) {
+            sum += (i * i);
+        }
+    }
+    void displaySum() {
+        cout << "Sum of series is: " << sum << endl;
+    }
+};
+
+int main() {
+    int n;
+
+    cout << "Enter an integer for sum of first n natural numbers: ";
+    cin >> n;
+    SeriesSum naturalSumCalculator(n);
+
+    cout << "Enter an integer for sum of squares of first n natural numbers: ";
+    cin >> n;
+    SeriesSum squareSumCalculator(n, true);
+
+    return 0;
+}
